@@ -30,5 +30,7 @@ jobs:
       run: echo "Hello ${{ github.event.inputs.name }}"
     - name: pwd
       run: pwd
+    - name: ls
+      run: ls -l
     - name: build
       run: make
