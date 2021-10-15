@@ -30,13 +30,9 @@ jobs:
       run: echo "Hello ${{ github.event.inputs.name }}"
     - name: pwd
       run: pwd
-    - name: ls
-      run: ls -a
-    - name: cd
-      run: cd ..
-    - name: pwd
-      run: pwd
-    - name: ls
-      run: ls -a
+           ls -a
+           cd ..
+           pwd
+           ls -a
     - name: build
       run: make
