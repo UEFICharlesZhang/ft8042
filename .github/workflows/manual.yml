@@ -28,11 +28,8 @@ jobs:
     # Runs a single command using the runners shell
     - name: Send greeting
       run: echo "Hello ${{ github.event.inputs.name }}"
-    - name: pwd
-      run: pwd
-           ls -a
-           cd ..
-           pwd
-           ls -a
-    - name: build
-      run: make
+    - name: clone
+      run: |
+           git clone https://github.com/UEFICharlesZhang/ft8042.git
+           cd ft8042
+           make
