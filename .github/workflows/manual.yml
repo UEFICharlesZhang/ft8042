@@ -28,9 +28,7 @@ jobs:
     # Runs a single command using the runners shell
     - name: Send greeting
       run: echo "Hello ${{ github.event.inputs.name }}"
-    - name: build
-      run: cd ..
-    - name: build
-      run: cd ..
+    - name: pwd
+      run: pwd
     - name: build
       run: make
