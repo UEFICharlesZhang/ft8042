@@ -54,7 +54,7 @@ static int __init i8042_platform_init(void)
 	kbd_iobase = ioremap(0x20000000, 0x8000000);
 
 	printk(KERN_INFO "i8042_platform_init kbd_iobase : 0x%lX, irq: %d\n",
-	       kbd_iobase, i8042_kbd_irq);
+	       (long unsigned int)kbd_iobase, i8042_kbd_irq);
 	i8042_reset = I8042_RESET_ALWAYS;
 
 	return 0;
