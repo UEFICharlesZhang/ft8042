@@ -3,8 +3,8 @@
  *  i8042 keyboard and mouse controller driver for Linux
  *
  *  Copyright (c) 1999-2004 Vojtech Pavlik
+ *  Copyright (c) 2021-2022 Great Wall
  */
-
 
 #define pr_fmt(fmt) KBUILD_MODNAME ": " fmt
 
