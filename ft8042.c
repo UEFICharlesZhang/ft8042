@@ -1334,9 +1334,9 @@ static int __init i8042_create_kbd_port(void)
 	serio->ps2_cmd_mutex	= &i8042_mutex;
 	serio->port_data	= port;
 	serio->dev.parent	= &i8042_platform_device->dev;
-	strlcpy(serio->name, "i8042 KBD port", sizeof(serio->name));
-	strlcpy(serio->phys, I8042_KBD_PHYS_DESC, sizeof(serio->phys));
-	strlcpy(serio->firmware_id, i8042_kbd_firmware_id,
+	strncpy(serio->name, "i8042 KBD port", sizeof(serio->name));
+	strncpy(serio->phys, I8042_KBD_PHYS_DESC, sizeof(serio->phys));
+	strncpy(serio->firmware_id, i8042_kbd_firmware_id,
 		sizeof(serio->firmware_id));
 	set_primary_fwnode(&serio->dev, i8042_kbd_fwnode);
 
@@ -1364,15 +1364,15 @@ static int __init i8042_create_aux_port(int idx)
 	serio->port_data	= port;
 	serio->dev.parent	= &i8042_platform_device->dev;
 	if (idx < 0) {
-		strlcpy(serio->name, "i8042 AUX port", sizeof(serio->name));
-		strlcpy(serio->phys, I8042_AUX_PHYS_DESC, sizeof(serio->phys));
-		strlcpy(serio->firmware_id, i8042_aux_firmware_id,
+		strncpy(serio->name, "i8042 AUX port", sizeof(serio->name));
+		strncpy(serio->phys, I8042_AUX_PHYS_DESC, sizeof(serio->phys));
+		strncpy(serio->firmware_id, i8042_aux_firmware_id,
 			sizeof(serio->firmware_id));
 		serio->close = i8042_port_close;
 	} else {
 		snprintf(serio->name, sizeof(serio->name), "i8042 AUX%d port", idx);
 		snprintf(serio->phys, sizeof(serio->phys), I8042_MUX_PHYS_DESC, idx + 1);
-		strlcpy(serio->firmware_id, i8042_aux_firmware_id,
+		strncpy(serio->firmware_id, i8042_aux_firmware_id,
 			sizeof(serio->firmware_id));
 	}
 
@@ -1579,14 +1579,12 @@ static int __init i8042_probe(struct platform_device *dev)
 	return error;
 }
 
-static int i8042_remove(struct platform_device *dev)
+static void i8042_remove(struct platform_device *dev)
 {
 	i8042_unregister_ports();
 	i8042_free_irqs();
 	i8042_controller_reset(false);
 	i8042_platform_device = NULL;
-
-	return 0;
 }
 
 static struct platform_driver i8042_driver = {
